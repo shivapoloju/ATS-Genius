@@ -10,7 +10,7 @@ Here is the high-level architecture of the application, representing how the fro
 
 ```mermaid
 graph TD
-    subgraph Frontend (React SPA)
+    subgraph Frontend ["Frontend (React SPA)"]
         A[User Interface] -->|1. Upload PDF & Paste Job Desc| B[Analyze Page]
         A -->|2. View Historical Scans| C[History Page]
         A -->|3. Read ATS Report| D[Results Page]
@@ -19,7 +19,7 @@ graph TD
         D -->|GET /api/analyses/:id| E
     end
 
-    subgraph Backend (FastAPI Server)
+    subgraph Backend ["Backend (FastAPI Server)"]
         F[FastAPI Router]
         E -->|HTTP Requests| F
         F -->|Extract Text| G[pypdf Parser]
@@ -28,8 +28,8 @@ graph TD
         F -->|Save Report| J[Motor Async MongoDB Client]
     end
 
-    subgraph Database Layer
-        J -->|Write / Read / Delete| K[(MongoDB Local Database)]
+    subgraph Database ["Database Layer"]
+        J -->|Write / Read / Delete| K[("MongoDB Local Database")]
     end
 ```
 
