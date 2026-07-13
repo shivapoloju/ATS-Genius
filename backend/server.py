@@ -275,13 +275,12 @@ app.include_router(api_router)
 # Middleware
 # --------------------------------------------------
 
+cors_origins = os.environ.get("CORS_ORIGINS", "*").split(",")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_credentials=True,
-    allow_origins=os.environ.get(
-        "CORS_ORIGINS",
-        "*",
-    ).split(","),
+    allow_credentials="*" not in cors_origins,
+    allow_origins=cors_origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )
