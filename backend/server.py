@@ -275,7 +275,11 @@ app.include_router(api_router)
 # Middleware
 # --------------------------------------------------
 
-cors_origins = os.environ.get("CORS_ORIGINS", "*").split(",")
+raw_origins = os.environ.get("CORS_ORIGINS", "*").split(",")
+cors_origins = [origin.strip().rstrip("/") for origin in raw_origins if origin.strip()]
+
+if "*" in cors_origins:
+    cors_origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
