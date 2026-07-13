@@ -278,13 +278,21 @@ app.include_router(api_router)
 raw_origins = os.environ.get("CORS_ORIGINS", "*").split(",")
 cors_origins = [origin.strip().rstrip("/") for origin in raw_origins if origin.strip()]
 
-if "*" in cors_origins:
-    cors_origins = ["*"]
+# Remove wildcard if present to allow credentials with explicit lists/regex
+allow_origins = [o for o in cors_origins if o != "*"]
+allow_origins.extend([
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+])
+allow_origins = list(set(allow_origins))
 
 app.add_middleware(
     CORSMiddleware,
-    allow_credentials="*" not in cors_origins,
-    allow_origins=cors_origins,
+    allow_origins=allow_origins,
+    allow_origin_regex=r"https://.*\.vercel\.app",
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
