@@ -1,5 +1,7 @@
 # ResumeIQ - AI Resume Screening & Job Matching Platform
 
+[![Website](https://img.shields.io/badge/Website-ats--genius--omega.vercel.app-000000?style=for-the-badge&logo=vercel)](https://ats-genius-omega.vercel.app)
+
 ResumeIQ is a GenAI-powered Applicant Tracking System (ATS) matching platform. It allows candidates and recruiters to instantly upload a resume in PDF format, paste a job description, and obtain a structured, objective ATS compatibility report including an overall match score, detailed score breakdowns (skills, experience, education, keywords), extracted matching skills, identified skill gaps, career recommendations, and tailored interview prep questions.
 
 ---
